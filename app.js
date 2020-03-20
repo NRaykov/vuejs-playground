@@ -42,7 +42,7 @@ new Vue({
         this.monsterAttacks();
     },
     giveUp: function () {
-
+        this.gameIsRunning = false;
     },
     calculateDamage: function (min, max) {
       // Calc random damage between 3 and 10 HINT (Math.random() works with values between 0 and 1, so we need to multiply it with max)
