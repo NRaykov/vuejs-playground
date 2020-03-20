@@ -12,21 +12,34 @@ new Vue({
       this.monsterHealth = 100;
     },
     attack: function () {
-      // Decrease player's health with calculated damage (per click)
-      this.playerHealth -= this.calculateDamage(5, 12);
+      // Decrease monsters's health with calculated damage (per click)
+      this.monsterHealth -= this.calculateDamage(3, 10);
       if (this.gameResult()) {
           return;
       }
-
-      // Decrease monsters's health with calculated damage (per click)
-      this.monsterHealth -= this.calculateDamage(3, 10);
-      this.gameResult();
+      this.monsterAttacks();
     },
     specialAttack: function () {
-
+      // Decrease monsters's health with calculated damage (per click)
+      this.monsterHealth -= this.calculateDamage(10, 20);
+      if (this.gameResult()) {
+        return;
+      }
+      this.monsterAttacks();
+    },
+    monsterAttacks: function () {
+      // Decrease player's health with calculated damage (per click)
+      this.playerHealth -= this.calculateDamage(5, 12);
+      this.gameResult();
     },
     heal: function () {
+        if (this.playerHealth <= 90) {
+          this.playerHealth += 15;
+        } else {
+          this.playerHealth = 100;
+        }
 
+        this.monsterAttacks();
     },
     giveUp: function () {
 
